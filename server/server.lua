@@ -1,4 +1,5 @@
 local RSGCore = exports['rsg-core']:GetCoreObject()
+local HorseSettings = lib.load('shared.horse_settings')
 lib.locale()
 
 ----------------------------------
@@ -188,7 +189,7 @@ RegisterServerEvent('rsg-horses:server:deletehorse', function(data)
             MySQL.update('DELETE FROM player_horses WHERE id = ? AND citizenid = ?', { data.horseid, Player.PlayerData.citizenid })
         end
     end
-    for k, v in pairs(Config.HorseSettings) do
+    for k, v in pairs(HorseSettings) do
         if v.horsemodel == modelHorse then
             local sellprice = v.horseprice * 0.5
             Player.Functions.AddMoney('cash', sellprice)
